@@ -1,0 +1,33 @@
+{
+  "name": "mocha-slack-notifications-reporter",
+  "version": "1.0.0",
+  "description": "This module generates detailed mocha test running report and send to the slack communication channel by using provided slack webhook url.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kot99a/mocha-slack-notifications-reporter.git"
+  },
+  "keywords": [
+    "mocha",
+    "slack",
+    "allure",
+    "amazon s3",
+    "report"
+  ],
+  "author": "a99kotsin@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kot99a/mocha-slack-notifications-reporter/issues"
+  },
+  "homepage": "https://github.com/kot99a/mocha-slack-notifications-reporter#readme",
+  "dependencies": {
+    "sync-request": "^6.1.0"
+  }
+}
+
