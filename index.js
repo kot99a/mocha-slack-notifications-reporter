@@ -28,25 +28,27 @@ function MyReporter (runner, options) {
   });
 
   const sendReport = async function () {
-    try {
-      const report = { };
-      const reporterOptions = options.reporterOptions;
+    const report = { };
+    const reporterOptions = options.reporterOptions;
+    if (reporterOptions.title) {
       report.title = reporterOptions.title;
+    }
+    if (reporterOptions.linkToReport) {
       report.linkToReport = reporterOptions.linkToReport;
-      report.total = passes + failures;
-      report.failures = failures;
-      report.passed = passes;
-      if (typeof (reporterOptions.logFailedTests) === 'boolean') {
-        if (reporterOptions.logFailedTests) {
-          report.failedTests = failedTests;
-        }
+    }
+    report.total = passes + failures;
+    report.failures = failures;
+    report.passed = passes;
+    if (typeof (reporterOptions.logFailedTests) === 'boolean') {
+      if (reporterOptions.logFailedTests) {
+        report.failedTests = failedTests;
       }
-      // Slack notifications
-      if (reporterOptions.url && reporterOptions.username && reporterOptions.channel) {
-        await slack.sendWebhook(report, reporterOptions);
-        return true;
-      }
-    } catch (err) {
+    }
+    // Slack notifications
+    if (reporterOptions.url && reporterOptions.username && reporterOptions.channel) {
+      await slack.sendWebhook(report, reporterOptions);
+      return true;
+    } else {
       throw new Error('You didn\'t specify the required variables for sending the message in slack! \n Required variables: url, channel, username');
     }
   };
