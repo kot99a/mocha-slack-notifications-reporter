@@ -17,12 +17,18 @@ It is recommended to use mocha programitically to configure your report in effic
     const mocha = new Mocha({
         reporter: 'mocha-slack-notifications-reporter',
         reporterOptions:{
-            url:'https://hooks.slack.com/..', // Use your Incoming Webhook URL to post a message to Slack (Required)
-            channel: '#general',              // Сhannel name                                             (Required)
-            username: 'allure_reporter',      // The user who will send the messages                      (Required)
-            linkToReport: 'http://...'        // Link to the report                                      (Optional)   
-            logFailedTests: true,             // Send in a message the failed tests           <boolean>  (Optional)
-            title: 'Slack report test'        // Message title                                           (Optional)  
+            url:'https://hooks.slack.com/..', // Use your Incoming Webhook URL to post a message to Slack   <string>  (Required)
+            channel: '#general',              // Сhannel name                                               <string>  (Required)
+            username: 'allure_reporter',      // The user who will send the messages                        <string>  (Required)
+            linkToReport: 'http://...'        // Link to the report                                         <string>  (Optional)   
+            logFailedTests: true,             // Send in a message the failed tests                         <boolean> (Optional, "false" by default)
+            title: 'Slack report test'        // Message title                                              <string>  (Optional) 
+            environment: 'production'         // Test environment                                           <string>  (Optional) 
+            additionalInfo: {                 // Key value for additional logging                         (Optional)
+                'Test features': 'authorization, purchases'
+            },
+            useEmoji: true                    // Send in a message the failed tests                         <boolean> (Optional, "false" by default)
+            useReportButton: true             // Send in a message the failed tests                         <boolean> (Optional, "false" by default)
         }
     })
 
@@ -31,9 +37,4 @@ You can pass comma-separated options to the reporter via mocha's `--reporter-opt
 `$ mocha test.js --reporter mocha-slack-notifications-reporter --reporter-options url=url,channel=channel,usename=username`
 
 The example output for the slack report looks like below.
-![slack message example](./lib/example.png)
-
-
-    
-    
-    
+![slack message example](./example/example.png)
