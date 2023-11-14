@@ -29,6 +29,7 @@ It is recommended to use mocha programitically to configure your report in effic
             },
             useEmoji: true                    // Send in a message the failed tests                         <boolean> (Optional, "false" by default)
             useReportButton: true             // Send in a message the failed tests                         <boolean> (Optional, "false" by default)
+            logTestRunDuration: true          // Logs the test run duration tests                           <boolean> (Optional, "false" by default)
         }
     })
 

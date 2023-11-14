@@ -4,6 +4,7 @@ module.exports = MyReporter;
 
 function MyReporter (runner, options) {
   mocha.reporters.Base.call(this, runner);
+  const startTime = Date.now();
   let passes = 0;
   let failures = 0;
   const failedTests = [];
@@ -64,6 +65,12 @@ function MyReporter (runner, options) {
         report.logFailedTestsInDetail = reporterOptions.logFailedTestsInDetail;
       }
     }
+    if (typeof (reporterOptions?.logTestRunDuration) === 'boolean') {
+      if (reporterOptions.logTestRunDuration) {
+        report.logTestRunDuration = reporterOptions.logTestRunDuration;
+        report.startTime = startTime;
+      }
+    }
 
     report.total = passes + failures;
     report.failures = failures;
@@ -74,7 +81,7 @@ function MyReporter (runner, options) {
       slack.sendWebhook(report, reporterOptions);
       return true;
     } else {
-      throw new Error('You didn\'t specify the required variables for sending the message in slack! \n Required variables: url, channel, username');
+      console.log('You didn\'t specify the required variables for sending the message in slack! \n Required variables: url, channel, username');
     }
   };
 }
